@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -74,14 +75,9 @@ WSGI_APPLICATION = "auto_selecto.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "auto_selecto_dealership",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "localhost",
-        "DATABASE_PORT": "5464",
-    }
+    "default": dj_database_url.parse(
+        "postgres://auto_selecto:2doKCWdDuGMLb1ivaVDYhbcSQ0N0gUn5@dpg-cpiuktq1hbls73bnfnd0-a.oregon-postgres.render.com/msvc_dealership"
+    )
 }
 
 # Password validation

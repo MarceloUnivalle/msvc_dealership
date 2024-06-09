@@ -15,12 +15,16 @@ COPY requirements.txt .
 # Install requirements
 RUN pip install -r requirements.txt
 
-# RUN python manage.py makemigrations
-
-# RUN python manage.py migrate
-
 # Copy all files to working directory
 COPY . .
+
+
+# Make Migrations
+RUN python manage.py makemigrations
+
+RUN python manage.py migrate
+
+
 
 # Expose the container port
 EXPOSE 8001
