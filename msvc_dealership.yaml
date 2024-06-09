@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dealership
+  labels:
+    app: dealership
+spec:
+  containers:
+    - name: dealership
+      image: marcelounivalle/msvc_dealership:1.0.0
+      ports:
+        - containerPort: 8001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dealership
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8001
+      targetPort: 8001
+      protocol: TCP
+  selector:
+    app: dealership
