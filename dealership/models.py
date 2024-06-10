@@ -1,9 +1,6 @@
 from django.db import models
 from django.utils import timezone
 from django.db import transaction
-from users.models import Client, StaffMember
-
-
 
 class City(models.Model):
   name = models.CharField(max_length=60)
@@ -70,8 +67,8 @@ class Vehicle(models.Model):
 
 
 class VehicleQuotation(models.Model):
-  client = models.ForeignKey(Client, on_delete=models.CASCADE)
-  vendor = models.ForeignKey(StaffMember, on_delete=models.CASCADE, blank=True, null=True)
+  # client = models.ForeignKey(Client, on_delete=models.CASCADE)
+  # vendor = models.ForeignKey(StaffMember, on_delete=models.CASCADE, blank=True, null=True)
   city = models.ForeignKey(City, on_delete=models.CASCADE)
   office = models.ForeignKey(Office, on_delete=models.CASCADE)
   vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
@@ -80,5 +77,5 @@ class VehicleQuotation(models.Model):
   sold = models.BooleanField(default=False)
 
   def __str__(self):
-    return f"id: {self.id}, client: {self.client_id}, city: {self.city.id}, sold: {self.sold}, office: {self.office.id}, vehicle: {self.vehicle.id}, created_at: {self.created_at}, closed_at: {self.closed_at}"
+    return f"id: {self.id}, city: {self.city.id}, sold: {self.sold}, office: {self.office.id}, vehicle: {self.vehicle.id}, created_at: {self.created_at}, closed_at: {self.closed_at}"
   

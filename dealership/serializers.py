@@ -70,11 +70,6 @@ class VehicleSerializer(serializers.ModelSerializer):
     return vehicle
     
 class VehicleQuotationSerializer(serializers.ModelSerializer):
-  client_name = serializers.SerializerMethodField()
-  client_last_name = serializers.SerializerMethodField()
-  client_email = serializers.SerializerMethodField()
-  client_telephone = serializers.SerializerMethodField()
-  client_cedula = serializers.SerializerMethodField()
   office_name = serializers.SerializerMethodField()
   city_name = serializers.SerializerMethodField()
   created_at = serializers.SerializerMethodField()
@@ -85,32 +80,14 @@ class VehicleQuotationSerializer(serializers.ModelSerializer):
     model = VehicleQuotation
     fields = ['id',
               'city',
-              'client',
-              'vendor',
               'office',
               'vehicle',
               'sold',
               'closed_at',
               'created_at',
-              'client_name',
-              'client_last_name',
               'office_name',
               'city_name',
-              'client_email',
-              'client_telephone',
-              'client_cedula']
-
-  def get_client_name(self, obj):
-    return obj.client.name if obj.client else None
-  
-  def get_client_last_name(self, obj):
-    return obj.client.last_name if obj.client else None
-  def get_client_email(self, obj):
-    return obj.client.email if obj.client else None
-  def get_client_telephone(self, obj):
-    return obj.client.telephone if obj.client else None
-  def get_client_cedula(self, obj):
-    return obj.client.cedula if obj.client else None
+            ]
   
   def get_office_name(self, obj):
     return obj.office.name if obj.office else None

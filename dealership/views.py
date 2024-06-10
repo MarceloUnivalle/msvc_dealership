@@ -49,7 +49,7 @@ class VehicleQuotationListCreateView(generics.ListCreateAPIView):
     serializer_class = VehicleQuotationSerializer
 
     def get_queryset(self):
-      return VehicleQuotation.objects.filter(vendor=None)
+      return VehicleQuotation.objects.all()
     
 class VehicleQuotationRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = VehicleQuotationSerializer
@@ -65,15 +65,7 @@ class VehicleQuotationCreateView(generics.CreateAPIView):
     pk = self.kwargs.get('pk')
     return Vehicle.objects.filter(pk=pk)
    
-class VehicleQuotationByVendorView(generics.ListAPIView):
-    serializer_class = VehicleQuotationSerializer
-
-    def get_queryset(self):
-        staffmember_id = self.kwargs['staffmember_id']
-        return VehicleQuotation.objects.filter(
-            Q(vendor_id=staffmember_id) & Q(closed_at__isnull=True)
-        )
-    
+       
 class VehicleQuotationDetailView(generics.RetrieveAPIView):
     serializer_class = VehicleQuotationSerializer
 
